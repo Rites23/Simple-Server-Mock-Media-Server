@@ -1,0 +1,33 @@
+const fs = require("fs");
+const path = require("path");
+
+const dataFilePath = path.join(__dirname, "data.json");
+
+// Function to initialize the data file
+const initializeDataFile = () => {
+  if (!fs.existsSync(dataFilePath)) {
+    const initialData = {
+      movies: [
+        { id: 1, title: "Inception", director: "Christopher Nolan", year: 2010 },
+        { id: 2, title: "The Matrix", director: "The Wachowskis", year: 1999 },
+        { id: 3, title: "Avatar 3", director: "James Cameron", year: 2025 },
+        { id: 4, title: "Guardians of the Galaxy Vol. 4", director: "James Gunn", year: 2025 },
+      ],
+      series: [
+        { id: 1, title: "Breaking Bad", creator: "Vince Gilligan", seasons: 5 },
+        { id: 2, title: "Stranger Things", creator: "The Duffer Brothers", seasons: 4 },
+        { id: 3, title: "The Mandalorian Season 4", creator: "Jon Favreau", seasons: 4, year: 2025 },
+        { id: 4, title: "The Witcher Season 4", creator: "Lauren Schmidt Hissrich", seasons: 4, year: 2025 },
+      ],
+      songs: [
+        { id: 1, title: "Bohemian Rhapsody", artist: "Queen", year: 1975 },
+        { id: 2, title: "Imagine", artist: "John Lennon", year: 1971 },
+        { id: 3, title: "Save Your Tears", artist: "The Weeknd", year: 2025 },
+        { id: 4, title: "Rolling in the Deep", artist: "Adele", year: 2025 },
+      ],
+    };
+    fs.writeFileSync(dataFilePath, JSON.stringify(initialData, null, 2));
+  }
+};
+
+module.exports = { dataFilePath, initializeDataFile };
